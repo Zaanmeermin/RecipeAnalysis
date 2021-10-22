@@ -27,7 +27,7 @@ except FileNotFoundError:
 
 # Initialize dictionary
 wordFreq = {}
-pageNum = "BTMM0091_003"
+pageNum = "_001"
 
 # key: word
 # value: list consisting of the page numbers where the word was mentioned
@@ -36,6 +36,7 @@ for word in f.read().lower().split():
     if(not re.search('[a-z]', word)):
         continue
 
+    word = word.strip('.!?:;,()')
     print(word)
     if(word.startswith(fileName.lower())):
         pageNum = word[len(fileName):]
