@@ -41,7 +41,7 @@ def analyseFile(f, fileName):
         # print(word)
         if(word.startswith(fileName.lower())):
             pageNum = word[len(fileName) + 1:]
-        if(word in wordFreq):
+        elif(word in wordFreq):
             if(fileName in wordFreq[word]):
                 wordFreq[word][fileName].append(pageNum) 
             else:
@@ -77,7 +77,7 @@ pairFreq = {}
 columns = None
 
 for(dirpath, _, fileNames) in os.walk(folder):
-    columns = ['word'] + fileNames
+    columns = ['word', 'total frequency'] + fileNames
     for fileName in fileNames:
         with open(os.path.join(dirpath, fileName)) as f:
             # print(dirpath, fileName) 
@@ -90,12 +90,15 @@ for(dirpath, _, fileNames) in os.walk(folder):
 
             analyseFile(f, fileName)
 
+sortedWords = sorted(wordFreq, key=lambda k: sum([len(wordFreq[k][f]) for f in wordFreq[k]]), reverse=True)
+
 with open('wordFrequencies.csv', 'w') as csvfile:
     writer = csv.DictWriter(csvfile, fieldnames=columns)
     writer.writeheader()
 
-    for word in wordFreq:
-        row = {'word': word}
+    for word in sortedWords:
+        freq = sum([len(wordFreq[word][f]) for f in wordFreq[word]])
+        row = {'word': word, 'total frequency': freq}
         row.update(wordFreq[word])
         writer.writerow(row)
 
