@@ -27,7 +27,7 @@ def printDict(pairFreq, minFreq=2):
             print(str(pair) + ": " + str(pairFreq[pair]))
 
 def analyseFile(f, fileName):
-    pageNum = "0001"
+    pageNum = 1
     prevWord = ""
 
     for word in f.read().lower().split():
@@ -40,7 +40,7 @@ def analyseFile(f, fileName):
         word = word.strip('.!?:;,()')
         # print(word)
         if(word.startswith(fileName.lower())):
-            pageNum = word[len(fileName) + 1:]
+            pageNum = int(word[len(fileName) + 1:].lstrip('0'))
         elif(word in wordFreq):
             if(fileName in wordFreq[word]):
                 wordFreq[word][fileName].append(pageNum) 
