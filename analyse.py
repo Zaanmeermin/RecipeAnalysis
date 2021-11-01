@@ -88,6 +88,6 @@ for(dirpath, _, fileNames) in os.walk(folder):
 
 
 # [print(x) for x in getFileList(pairFreq, 'BTMM0091') if len(x[1]) > 6]
-# [print(x) for x in getIngredientList(wordFreq, 'galnoten')]
-print(get(pairFreq, ('indigo', 'carmin'), 'BTMM0091'))
+[print(x) for x in getIngredientList(wordFreq, 'galnoten')]
+# print(get(pairFreq, ('indigo', 'carmin'), 'BTMM0091'))
 
