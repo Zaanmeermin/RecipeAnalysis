@@ -4,6 +4,7 @@ import sys
 import re
 import os
 from pathlib import Path
+import csv
 
 def getIngredientList(dict, ingredient):
     if(ingredient in dict):
@@ -73,7 +74,10 @@ folder = Path(folderName)
 wordFreq = {}
 pairFreq = {}
 
+columns = None
+
 for(dirpath, _, fileNames) in os.walk(folder):
+    columns = ['word'] + fileNames
     for fileName in fileNames:
         with open(os.path.join(dirpath, fileName)) as f:
             # print(dirpath, fileName) 
@@ -86,8 +90,16 @@ for(dirpath, _, fileNames) in os.walk(folder):
 
             analyseFile(f, fileName)
 
+with open('wordFrequencies.csv', 'w') as csvfile:
+    writer = csv.DictWriter(csvfile, fieldnames=columns)
+    writer.writeheader()
+
+    for word in wordFreq:
+        row = {'word': word}
+        row.update(wordFreq[word])
+        writer.writerow(row)
 
 # [print(x) for x in getFileList(pairFreq, 'BTMM0091') if len(x[1]) > 6]
-[print(x) for x in getIngredientList(wordFreq, 'galnoten')]
+# [print(x) for x in getIngredientList(wordFreq, 'galnoten')]
 # print(get(pairFreq, ('indigo', 'carmin'), 'BTMM0091'))
 
