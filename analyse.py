@@ -1,4 +1,9 @@
 #!/usr/bin/env python3 
+"""""
+Semma Raadschelders
+Textielmuseum Tilburg
+2021
+"""
 
 import sys
 import re
