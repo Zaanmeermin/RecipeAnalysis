@@ -35,7 +35,12 @@ def analyseFile(f, fileName):
     pageNum = 1
     prevWord = ""
 
-    for word in f.read().lower().split():
+    text = f.read().lower()
+    # Removes hyphens
+    text = re.sub("-[\t ]*\n\s*", "", text)
+
+    for word in text.split():
+        # print(word)
         # Skip words not containing letters.
         # Also skip common words to denote weight, to avoid matching pairs with these.
         if(not re.search('[a-z]', word) or word == "pond"):
