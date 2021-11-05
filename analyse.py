@@ -87,7 +87,7 @@ def analyseFolder(folder):
     return columns
 
 def makeCSV(fileName, dict):
-    with open('wordFrequencies.csv', 'w') as csvfile:
+    with open(fileName, 'w') as csvfile:
         writer = csv.DictWriter(csvfile, fieldnames=columns)
         writer.writeheader()
 
