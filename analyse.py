@@ -66,6 +66,36 @@ def analyseFile(f, fileName):
 
         prevWord = word
 
+def analyseFolder(folder):
+    for(dirpath, _, fileNames) in os.walk(folder):
+        columns = ['word', 'total frequency'] + fileNames
+        for fileName in fileNames:
+            with open(os.path.join(dirpath, fileName)) as f:
+                # print(dirpath, fileName) 
+                path = os.path.join(dirpath, fileName)
+                try:
+                    f = open(path)
+                except FileNotFoundError:
+                    print("File not found.")
+                    sys.exit()
+
+                analyseFile(f, fileName)
+
+    # sortedWords = sorted(wordFreq, key=lambda k: sum([len(wordFreq[k][f]) for f in wordFreq[k]]), reverse=True)
+    
+    # return sortedWords
+    return columns
+
+def makeCSV(fileName, dict):
+    with open('wordFrequencies.csv', 'w') as csvfile:
+        writer = csv.DictWriter(csvfile, fieldnames=columns)
+        writer.writeheader()
+
+        for word in dict:
+            freq = sum([len(dict[word][f]) for f in dict[word]])
+            row = {'word': word, 'total frequency': freq}
+            row.update(dict[word])
+            writer.writerow(row)
 
 # Try to open file
 if(len(sys.argv) < 2):
@@ -75,37 +105,12 @@ if(len(sys.argv) < 2):
 folderName = sys.argv[1]
 folder = Path(folderName)
 
-# Initialize dictionary
 wordFreq = {}
 pairFreq = {}
 
-columns = None
-
-for(dirpath, _, fileNames) in os.walk(folder):
-    columns = ['word', 'total frequency'] + fileNames
-    for fileName in fileNames:
-        with open(os.path.join(dirpath, fileName)) as f:
-            # print(dirpath, fileName) 
-            path = os.path.join(dirpath, fileName)
-            try:
-                f = open(path)
-            except FileNotFoundError:
-                print("File not found.")
-                sys.exit()
-
-            analyseFile(f, fileName)
-
-sortedWords = sorted(wordFreq, key=lambda k: sum([len(wordFreq[k][f]) for f in wordFreq[k]]), reverse=True)
-
-with open('wordFrequencies.csv', 'w') as csvfile:
-    writer = csv.DictWriter(csvfile, fieldnames=columns)
-    writer.writeheader()
-
-    for word in sortedWords:
-        freq = sum([len(wordFreq[word][f]) for f in wordFreq[word]])
-        row = {'word': word, 'total frequency': freq}
-        row.update(wordFreq[word])
-        writer.writerow(row)
+columns = analyseFolder(folder)
+makeCSV('wordFrequencies.csv', wordFreq)
+makeCSV('pairFrequencies.csv', pairFreq)
 
 # [print(x) for x in getFileList(pairFreq, 'BTMM0091') if len(x[1]) > 6]
 # [print(x) for x in getIngredientList(wordFreq, 'galnoten')]
