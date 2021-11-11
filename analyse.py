@@ -36,8 +36,8 @@ def analyseFile(f, fileName):
     prevWord = ""
 
     text = f.read().lower()
-    # Removes hyphens
-    text = re.sub("-[\t ]*\n\s*", "", text)
+    # Removes hyphens and lines of -
+    text = re.sub("-+[\t ]*\n\s*", "", text)
 
     for word in text.split():
         # print(word)
