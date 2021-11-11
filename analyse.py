@@ -47,7 +47,7 @@ def analyseFile(f, fileName):
             prevWord = ""
             continue
 
-        word = word.strip('.!?:;,()')
+        word = word.strip('.!?:;,()\"\'‘')
         # print(word)
         if(word.startswith(fileName.lower())):
             pageNum = int(word[len(fileName) + 1:].lstrip('0'))
