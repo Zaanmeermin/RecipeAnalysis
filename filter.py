@@ -1,20 +1,11 @@
 from conversion import *
 
-# TODO:
-# - convert wordFreq and synonyms to dicts
-# - (initialize combinedWordFreq to be a dict filled with only the chosen synonyms) not sure if necessary
-# - go through all words in wordFreq
-#   - for every word, check if the word is in synonyms, 
-#       - if yes use the 'main' spelling, if no use regular spelling
-#       - for every manuscript
-#           - if already in combinedWordFreq, combine and sort lists
-#           - if not, just add manuscript to word dict
-
+# Goes though the wordFreq dictionary and combines all the synonyms as specified 
+# in the synonyms dictionary. Stores and returns this in a new dictionary.
 def combineSynonyms(wordFreq, synonyms):
     combinedWordFreq = {}
 
     for word in wordFreq:
-        print("word: ", word)
         main = ""
         # Get corresponding 'main' spelling, if it exists
         for synonym in synonyms:
@@ -22,17 +13,13 @@ def combineSynonyms(wordFreq, synonyms):
                 main = synonym
                 break
         if(main == ""): main = word
-        print(word, " should be written as ", main)
 
         if(main in combinedWordFreq):
             for fileName in wordFreq[word]:
-                print(fileName)
                 if fileName in combinedWordFreq[main]:
-                    print("known filename")
                     combinedWordFreq[main][fileName] += wordFreq[word][fileName]
                     combinedWordFreq[main][fileName] = sorted(combinedWordFreq[main][fileName])
                 else:
-                    print("new filename")
                     combinedWordFreq[main][fileName] = wordFreq[word][fileName]
         else:
             combinedWordFreq[main] = wordFreq[word]
