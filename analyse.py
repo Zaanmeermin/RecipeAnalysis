@@ -10,6 +10,7 @@ import re
 import os
 from pathlib import Path
 import csv
+from conversion import *
 
 def getIngredientList(dict, ingredient):
     if(ingredient in dict):
@@ -91,17 +92,6 @@ def analyseFolder(folder):
     # return sortedWords
     return columns
 
-def makeCSV(fileName, dict):
-    with open(fileName, 'w') as csvfile:
-        writer = csv.DictWriter(csvfile, fieldnames=columns)
-        writer.writeheader()
-
-        for word in dict:
-            freq = sum([len(dict[word][f]) for f in dict[word]])
-            row = {'word': word, 'total frequency': freq}
-            row.update(dict[word])
-            writer.writerow(row)
-
 # Try to open file
 if(len(sys.argv) < 2):
     print("Please specify a folder to analyse.")
@@ -114,8 +104,8 @@ wordFreq = {}
 pairFreq = {}
 
 columns = analyseFolder(folder)
-makeCSV('wordFrequencies.csv', wordFreq)
-makeCSV('pairFrequencies.csv', pairFreq)
+makeCSV('wordFrequencies.csv', wordFreq, columns)
+makeCSV('pairFrequencies.csv', pairFreq, columns)
 
 # [print(x) for x in getFileList(pairFreq, 'BTMM0091') if len(x[1]) > 6]
 # [print(x) for x in getIngredientList(wordFreq, 'galnoten')]

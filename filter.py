@@ -1,4 +1,5 @@
 import csv
+from conversion import *
 
 # ingredients = {}
 
@@ -46,18 +47,7 @@ def combineSynonyms(wordFreq, synonyms):
         else:
             combinedWordFreq[main] = wordFreq[word]
     return combinedWordFreq
-
-def makeCSV(fileName, dict):
-    with open(fileName, 'w') as csvfile:
-        writer = csv.DictWriter(csvfile, fieldnames=columns)
-        writer.writeheader()
-
-        for word in dict:
-            freq = sum([len(dict[word][f]) for f in dict[word]])
-            row = {'word': word, 'total frequency': freq}
-            row.update(dict[word])
-            writer.writerow(row)        
-
+ 
 # practice wordFreq
 wordFreq = \
 {
@@ -97,4 +87,4 @@ synonyms = {'aluin': ['alluijn', 'aluiijn', 'aluijn']}
 combinedWordFreq = combineSynonyms(wordFreq, synonyms)
 print(combinedWordFreq)
 columns = ['word', 'total frequency', 'BTMM0576', 'BTMM0575', 'BTMM0011', 'BTMM1427', 'BTMM0225', 'BTMM0092', 'BTMM0091', 'BTMM0585', 'BTMM0177']
-makeCSV('combinedWordFreq.csv', combinedWordFreq)
+makeCSV('combinedWordFreq.csv', combinedWordFreq, columns)
