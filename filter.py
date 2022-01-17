@@ -1,14 +1,4 @@
-import csv
 from conversion import *
-
-# ingredients = {}
-
-# with open('wordFrequenciesClean.csv', mode='r') as inp:
-#     reader = csv.reader(inp)
-#     for row in reader:
-#         print(row)
-
-# print(dict_from_csv)
 
 # TODO:
 # - convert wordFreq and synonyms to dicts

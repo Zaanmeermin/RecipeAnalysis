@@ -9,7 +9,6 @@ import sys
 import re
 import os
 from pathlib import Path
-import csv
 from conversion import *
 
 def getIngredientList(dict, ingredient):
