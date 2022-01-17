@@ -1,4 +1,4 @@
-# import csv
+import csv
 
 # ingredients = {}
 
@@ -20,6 +20,8 @@
 #           - if not, just add manuscript to word dict
 
 def combineSynonyms(wordFreq, synonyms):
+    combinedWordFreq = {}
+
     for word in wordFreq:
         print("word: ", word)
         main = ""
@@ -28,11 +30,33 @@ def combineSynonyms(wordFreq, synonyms):
             if(word in synonyms[synonym]):
                 main = synonym
                 break
-        if(len(main) > 0):
-            print(word, " should be written as ", main)
-                    
-        # else:
+        if(main == ""): main = word
+        print(word, " should be written as ", main)
 
+        if(main in combinedWordFreq):
+            for fileName in wordFreq[word]:
+                print(fileName)
+                if fileName in combinedWordFreq[main]:
+                    print("known filename")
+                    combinedWordFreq[main][fileName] += wordFreq[word][fileName]
+                    combinedWordFreq[main][fileName] = sorted(combinedWordFreq[main][fileName])
+                else:
+                    print("new filename")
+                    combinedWordFreq[main][fileName] = wordFreq[word][fileName]
+        else:
+            combinedWordFreq[main] = wordFreq[word]
+    return combinedWordFreq
+
+def makeCSV(fileName, dict):
+    with open(fileName, 'w') as csvfile:
+        writer = csv.DictWriter(csvfile, fieldnames=columns)
+        writer.writeheader()
+
+        for word in dict:
+            freq = sum([len(dict[word][f]) for f in dict[word]])
+            row = {'word': word, 'total frequency': freq}
+            row.update(dict[word])
+            writer.writerow(row)        
 
 # practice wordFreq
 wordFreq = \
@@ -71,3 +95,6 @@ synonyms = {'aluin': ['alluijn', 'aluiijn', 'aluijn']}
 
 
 combinedWordFreq = combineSynonyms(wordFreq, synonyms)
+print(combinedWordFreq)
+columns = ['word', 'total frequency', 'BTMM0576', 'BTMM0575', 'BTMM0011', 'BTMM1427', 'BTMM0225', 'BTMM0092', 'BTMM0091', 'BTMM0585', 'BTMM0177']
+makeCSV('combinedWordFreq.csv', combinedWordFreq)
