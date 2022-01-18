@@ -32,7 +32,6 @@ def CSVtoSynonyms(fileName):
     synonyms = {}
     with open(fileName, mode='r') as inp:
         reader = csv.reader(inp)
-        columns = reader.__next__()
         for row in reader:
             synonyms[row[0]] = row[1]
     
