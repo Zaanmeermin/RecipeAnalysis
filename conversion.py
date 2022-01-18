@@ -22,7 +22,6 @@ def CSVtoWordFreq(fileName):
         for row in reader:
             wordFreq[row[0]] = {}
             for i, item in enumerate(row[2:]):
-                print(item)
                 if(not item == ""):
                     wordFreq[row[0]][columns[i + 2]] = ast.literal_eval(item)
 
