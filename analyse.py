@@ -103,8 +103,8 @@ wordFreq = {}
 pairFreq = {}
 
 columns = analyseFolder(folder)
-makeCSV('wordFrequencies.csv', wordFreq, columns)
-makeCSV('pairFrequencies.csv', pairFreq, columns)
+wordFreqtoCSV('wordFrequencies.csv', wordFreq, columns)
+wordFreqtoCSV('pairFrequencies.csv', pairFreq, columns)
 
 # [print(x) for x in getFileList(pairFreq, 'BTMM0091') if len(x[1]) > 6]
 # [print(x) for x in getIngredientList(wordFreq, 'galnoten')]
