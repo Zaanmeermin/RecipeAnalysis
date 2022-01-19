@@ -152,7 +152,7 @@ class BubbleChart:
                 self.bubbles[i, :2], self.bubbles[i, 2], color=colors[i])
             ax.add_patch(circ)
             ax.text(*self.bubbles[i, :2], labels[i],
-                    horizontalalignment='center', verticalalignment='center', size=int(self.bubbles[i, 2] * 2))
+                    horizontalalignment='center', verticalalignment='center', size=12)
 
 if __name__ == "__main__":
     bubble_chart = BubbleChart(area=browser_market_share['market_share'],
