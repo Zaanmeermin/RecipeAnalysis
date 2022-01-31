@@ -22,3 +22,6 @@ wordFreq2 = CSVtoWordFreq("mergeTest2.csv")
 combinedWordFreq = combineDicts(wordFreq1, wordFreq2)
 
 print(combinedWordFreq)
+# columns = ['word', 'total frequency', 'BTMM0576', 'BTMM0575', 'BTMM0011', 'BTMM1427', 'BTMM0225', 'BTMM0092', 'BTMM0091', 'BTMM0585', 'BTMM0177']
+columns = ['word', 'total frequency', 'A', 'B', 'C', 'D']
+wordFreqtoCSV('combinedWordFreq.csv', combinedWordFreq, columns)
