@@ -27,26 +27,62 @@ def selectData(fileName, manuscripts, n):
     
     return topWords, topFrequencies
 
-manuscripts = ['BTMM0576', 'BTMM0575', 'BTMM0011', 'BTMM1427', 'BTMM0225', 'BTMM0092', 'BTMM0091', 'BTMM0585', 'BTMM0177']
-# manuscripts = ['BTMM0585']
+# all
+manuscripts = ['BTMM1427', 'BTMM0010', 'BTMM1566', 'BTMM0575', 'BTMM0011', 'BTMM0160', 'BTMM0576', 'BTMM0584', 'BTMM0225', 'BTMM0091', 'BTMM0177', 'BTMM0178', 'BTMM0176', 'BTMM0585', 'BTMM0092', 'BTMM1062']
+
+# 1st half 19th century
+# manuscripts = ['BTMM1427', 'BTMM0010', 'BTMM1566', 'BTMM0575', 'BTMM0011', 'BTMM0160', 'BTMM0576', 'BTMM0584', 'BTMM0225']
+
+# 2nd half 19th century
+# manuscripts = ['BTMM0091', 'BTMM0177', 'BTMM0178', 'BTMM0176', 'BTMM0585', 'BTMM0092', 'BTMM1062']
+
+# manuscripts = ['BTMM0091']
 
 colours = \
     {
         'blauwhout': '#5b1985',
-        'water': '#048eb8',
-        'koper(II)sulfaat': '#1db6e0',
-        'wijnsteen': '#b03813',
         'meekrap': '#d43d0b',
-        'sumak': '#7a1507',
-        'galnoten': '#73615e',
-        'potas': '#bf5b28',
         'geelhout': '#e6e610',
-        'aluin': '#e3e5e6'
+        'indigo': '#0a0869',
+        'roodhout': '#94091d',
+        'sandelhout': '#d43b20',
+        'orseille': '#db357d',
+        'kurkuma': '#ebd810',
+        'cochenille': '#c90a34',
+        'blauwhoutextract': '#5b1985',
+        'auramin': '#f5e90c',
+        'wouw': '#c0db0d',
+        'fuchsine': '#eb13aa',
+        'alizarine': '#ab001a',
+        'rocceline': '#c71b08',
+        'antraceen': '#945f0f',
+        'tuchroth': '#e33e19',
+        'aziet': '#7d2c00',
+        'indigokarmijn': '#0016d9',
+        'roodpot': '#b52b1b',
+        'koffie': '#401e06',
+        'quercitron': '#f0f041'
     }
 
 # n specifies how many data points you want to include.
-n = 15
-topWords, topFrequencies = selectData("combinedWordFreq.csv", manuscripts, n)
+# n = 7
+# topWords, topFrequencies = selectData("combinedWordFreqNoTannins.csv", manuscripts, n)
+
+
+# European dyes
+topWords = ['meekrap', 'wouw']
+topFrequencies = [515, 47]
+
+# International dyes
+# topWords = ['blauwhout', 'geelhout', 'indigo', 'roodhout', 'sandelhout', 'orseille',
+# 'kurkuma', 'cochenille', 'quercitron']
+# topFrequencies = [879, 325, 163, 135, 134, 99, 88, 82, 27]
+
+# Synthetic dyes
+# topWords = ['aziet', 'maquin', 'indigokarmijn', 'auramin', 'koffie', 'rocceline', 'fuchsine', 'antraceen', 'tucroth']
+# topFrequencies = [74, 73, 59, 52, 51, 33, 29, 28, 26]
+
+
 hexColours = [colours[word] if word in colours else '#6e6e6e' for word in topWords]
 print(topWords)
 print(topFrequencies)

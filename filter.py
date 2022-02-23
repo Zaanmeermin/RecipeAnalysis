@@ -38,5 +38,13 @@ print()
 
 combinedWordFreq = combineSynonyms(wordFreq, synonyms)
 print(combinedWordFreq)
-columns = ['word', 'total frequency', 'BTMM0576', 'BTMM0575', 'BTMM0011', 'BTMM1427', 'BTMM0225', 'BTMM0092', 'BTMM0091', 'BTMM0585', 'BTMM0177']
+# data 1
+# columns = ['word', 'total frequency', 'BTMM0576', 'BTMM0575', 'BTMM0011', 'BTMM1427', 'BTMM0225', 'BTMM0092', 'BTMM0091', 'BTMM0585', 'BTMM0177']
+
+# data 2
+# columns = ['word', 'total frequency', 'BTMM0010', 'BTMM0160', 'BTMM0178', 'BTMM0584', 'BTMM1062', 'BTMM1566']
+
+# All data
+columns = ['word', 'total frequency', 'BTMM1427', 'BTMM0010', 'BTMM1566', 'BTMM0575', 'BTMM0011', 'BTMM0160', 'BTMM0576', 'BTMM0584', 'BTMM0225', 'BTMM0091', 'BTMM0177', 'BTMM0178', 'BTMM0176', 'BTMM0585', 'BTMM0092', 'BTMM1062']
+
 wordFreqtoCSV('combinedWordFreq.csv', combinedWordFreq, columns)

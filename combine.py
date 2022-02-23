@@ -16,12 +16,12 @@ def combineDicts(wordFreq1, wordFreq2):
 
     return combinedWordFreq
 
-wordFreq1 = CSVtoWordFreq("mergeTest1.csv")
-wordFreq2 = CSVtoWordFreq("mergeTest2.csv")
+wordFreq1 = CSVtoWordFreq("data1.csv")
+wordFreq2 = CSVtoWordFreq("data2.csv")
 
 combinedWordFreq = combineDicts(wordFreq1, wordFreq2)
 
 print(combinedWordFreq)
 # columns = ['word', 'total frequency', 'BTMM0576', 'BTMM0575', 'BTMM0011', 'BTMM1427', 'BTMM0225', 'BTMM0092', 'BTMM0091', 'BTMM0585', 'BTMM0177']
-columns = ['word', 'total frequency', 'A', 'B', 'C', 'D']
+columns = ['word', 'total frequency', 'BTMM1427', 'BTMM0010', 'BTMM1566', 'BTMM0575', 'BTMM0011', 'BTMM0160', 'BTMM0576', 'BTMM0584', 'BTMM0225', 'BTMM0091', 'BTMM0177', 'BTMM0178', 'BTMM0176', 'BTMM0585', 'BTMM0092', 'BTMM1062']
 wordFreqtoCSV('combinedWordFreq.csv', combinedWordFreq, columns)
