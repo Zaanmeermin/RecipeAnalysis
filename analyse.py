@@ -91,22 +91,23 @@ def analyseFolder(folder):
     # return sortedWords
     return columns
 
-# Try to open file
-if(len(sys.argv) < 2):
-    print("Please specify a folder to analyse.")
-    sys.exit()
+if __name__ == "__main__":
+    # Try to open file
+    if(len(sys.argv) < 2):
+        print("Please specify a folder to analyse.")
+        sys.exit()
 
-folderName = sys.argv[1]
-folder = Path(folderName)
+    folderName = sys.argv[1]
+    folder = Path(folderName)
 
-wordFreq = {}
-pairFreq = {}
+    wordFreq = {}
+    pairFreq = {}
 
-columns = analyseFolder(folder)
-wordFreqtoCSV('wordFrequencies.csv', wordFreq, columns)
-wordFreqtoCSV('pairFrequencies.csv', pairFreq, columns)
+    columns = analyseFolder(folder)
+    wordFreqtoCSV('wordFrequencies.csv', wordFreq, columns)
+    wordFreqtoCSV('pairFrequencies.csv', pairFreq, columns)
 
-# [print(x) for x in getFileList(pairFreq, 'BTMM0091') if len(x[1]) > 6]
-# [print(x) for x in getIngredientList(wordFreq, 'galnoten')]
-# print(get(pairFreq, ('indigo', 'carmin'), 'BTMM0091'))
+    # [print(x) for x in getFileList(pairFreq, 'BTMM0091') if len(x[1]) > 6]
+    # [print(x) for x in getIngredientList(wordFreq, 'galnoten')]
+    # print(get(pairFreq, ('indigo', 'carmin'), 'BTMM0091'))
 
